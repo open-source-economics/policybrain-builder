@@ -84,10 +84,8 @@ optional arguments:
                      quits without executing plan
   --version          optional flag that writes Package-Builder release version
                      to stdout and quits
-  --channel CHANNEL  Channel(s) to be used in addtion to 'defaults'.This is
-                     only necessary if the channel is not already available.
-                     You can check with the commnand: 'conda config --get
-                     channels'.
+  --channel CHANNEL  Channel(s) to be used in addtion to 'defaults' and
+                     'pslmodels'.
 ```
 
 Once you can get this kind of `pbrelease` screen output, you're ready

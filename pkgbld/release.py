@@ -31,7 +31,8 @@ WORKING_DIR = os.path.join(
 BUILDS_DIR = 'pkgbld_output'
 
 
-def release(repo_name, pkg_name, version, local=False, dryrun=False):
+def release(repo_name, pkg_name, version, local=False, dryrun=False,
+            channels=None):
     """
     If local==False, conduct build using cloned source code and
     upload to Anaconda Cloud conda packages for each operating-system
@@ -118,6 +119,7 @@ def release(repo_name, pkg_name, version, local=False, dryrun=False):
     print(':   package_name = {}'.format(pkg_name))
     print(':   model_version = {}'.format(version))
     print(':   python_versions = {}'.format(python_versions))
+    print(':   dependent_channels = {}'.format(channels))
     if local:
         print(': Package-Builder will install package on local computer')
     else:
@@ -176,6 +178,10 @@ def release(repo_name, pkg_name, version, local=False, dryrun=False):
         replacement='__version__ = "{}"'.format(version)
     )
 
+    channel_str = f"--channel {ANACONDA_CHANNEL}"
+    for channel in channels or []:
+        channel_str += f" --channel {channel}"
+
     # build and upload model package for each Python version and OS platform
     local_platform = u.conda_platform_name()
     for pyver in python_versions:
@@ -183,9 +189,9 @@ def release(repo_name, pkg_name, version, local=False, dryrun=False):
         print((': Package-Builder is building package '
                'for Python {}').format(pyver))
         cmd = ('conda build --python {} --old-build-string '
-               '--channel {} --override-channels '
+               '{} --override-channels '
                '--no-anaconda-upload --output-folder {} '
-               'conda.recipe').format(pyver, ANACONDA_CHANNEL, BUILDS_DIR)
+               'conda.recipe').format(pyver, channel_str, BUILDS_DIR)
         u.os_call(cmd)
         # ... if local is True, skip convert and upload logic
         if local:
