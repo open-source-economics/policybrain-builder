@@ -61,6 +61,11 @@ def main():
                               'release version to stdout and quits'),
                         default=False,
                         action="store_true")
+    parser.add_argument("--channel",
+                        help=("Channel(s) to be used in addtion to 'defaults' and "
+                              "'pslmodels'."),
+                        default=None,
+                        action="append")
     args = parser.parse_args()
     # show Package-Builder version and quit if --version option specified
     if args.version:
@@ -100,5 +105,6 @@ def main():
         return 1
     # call pkgbld release function with specified parameters
     pkgbld.release(repo_name, pkg_name, version,
-                   local=args.local, dryrun=args.dryrun)
+                   local=args.local, dryrun=args.dryrun,
+                   channels=args.channel)
     return 0

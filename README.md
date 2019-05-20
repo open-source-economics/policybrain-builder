@@ -68,22 +68,24 @@ channel for public distribution. The built/uploaded packages are for Python
 3.6 and Python 3.7.
 
 positional arguments:
-  REPOSITORY_NAME  Name of repository in the GitHub organization called
-                   PSLmodels. Example: Tax-Calculator
-  PACKAGE_NAME     Name of packages to build and upload. Example: taxcalc
-  MODEL_VERSION    Model release string that has X.Y.Z semantic-versioning
-                   pattern. Example: 1.0.1
+  REPOSITORY_NAME    Name of repository in the GitHub organization called
+                     PSLmodels. Example: Tax-Calculator
+  PACKAGE_NAME       Name of packages to build and upload. Example: taxcalc
+  MODEL_VERSION      Model release string that has X.Y.Z semantic-versioning
+                     pattern. Example: 1.0.1
 
 optional arguments:
-  -h, --help       show this help message and exit
-  --local          optional flag that causes package to be built from current
-                   source code and installed on local computer without
-                   packages being uploaded to Anaconda Cloud PSLmodels
-                   channel.
-  --dryrun         optional flag that writes execution plan to stdout and
-                   quits without executing plan
-  --version        optional flag that writes Package-Builder release version
-                   to stdout and quits
+  -h, --help         show this help message and exit
+  --local            optional flag that causes package to be built from
+                     current source code and installed on local computer
+                     without packages being uploaded to Anaconda Cloud
+                     PSLmodels channel.
+  --dryrun           optional flag that writes execution plan to stdout and
+                     quits without executing plan
+  --version          optional flag that writes Package-Builder release version
+                     to stdout and quits
+  --channel CHANNEL  Channel(s) to be used in addtion to 'defaults' and
+                     'pslmodels'.
 ```
 
 Once you can get this kind of `pbrelease` screen output, you're ready
