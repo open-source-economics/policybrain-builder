@@ -105,6 +105,6 @@ def main():
         return 1
     # call pkgbld release function with specified parameters
     pkgbld.release(repo_name, pkg_name, version,
-                    local=args.local, dryrun=args.dryrun,
-                    channels=args.channel)
+                   local=args.local, dryrun=args.dryrun,
+                   channels=args.channel)
     return 0
