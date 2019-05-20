@@ -61,23 +61,3 @@ def conda_platform_name():
     is_64bit = sys.maxsize > 2 ** 32
     n_bits = '64' if is_64bit else '32'
     return conda_name + '-' + n_bits
-
-
-@contextmanager
-def channel_manager(channels: list = None):
-    """
-    Context manager for conda channels. If channels is None,
-    no action is taken.
-    """
-    curr_channels = os_call("conda config --get channels").decode()
-    to_remove = []
-    if channels is not None:
-        for channel in channels:
-            if channel not in curr_channels:
-                os_call(f"conda config --add channels {channel}")
-                to_remove.append(channel)
-    try:
-        yield
-    finally:
-        for channel in to_remove:
-            os_call(f"conda config --remove channels {channel}")

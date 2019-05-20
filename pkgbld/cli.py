@@ -107,7 +107,6 @@ def main():
         print('USAGE:', usage_str)
         return 1
     # call pkgbld release function with specified parameters
-    with u.channel_manager(args.channel):
-        pkgbld.release(repo_name, pkg_name, version,
-                       local=args.local, dryrun=args.dryrun)
+    pkgbld.release(repo_name, pkg_name, version,
+                    local=args.local, dryrun=args.dryrun)
     return 0
