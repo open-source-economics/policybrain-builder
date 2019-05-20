@@ -61,6 +61,9 @@ def release(repo_name, pkg_name, version, local=False, dryrun=False,
     dryrun: boolean
         whether or not just the package build/upload plan is shown
 
+    channels: list or None
+        list of channels that should be included in the build string
+
     Raises
     ------
     ValueError:

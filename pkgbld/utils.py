@@ -9,7 +9,6 @@ import subprocess
 import re
 import platform
 import sys
-from contextlib import contextmanager
 
 
 def os_call(cmd, ignore_error=False):
