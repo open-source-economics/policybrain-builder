@@ -10,6 +10,7 @@ import argparse
 import re
 import os
 import pkgbld
+import pkgbld.utils as u
 
 
 def main():
@@ -61,6 +62,13 @@ def main():
                               'release version to stdout and quits'),
                         default=False,
                         action="store_true")
+    parser.add_argument("--channel",
+                        help=("Channel(s) to be used in addtion to 'defaults'."
+                              "This is only necessary if the channel is not already "
+                              "available. You can check with the commnand: "
+                              "'conda config --get channels'."),
+                        default=None,
+                        action="append")
     args = parser.parse_args()
     # show Package-Builder version and quit if --version option specified
     if args.version:
@@ -99,6 +107,7 @@ def main():
         print('USAGE:', usage_str)
         return 1
     # call pkgbld release function with specified parameters
-    pkgbld.release(repo_name, pkg_name, version,
-                   local=args.local, dryrun=args.dryrun)
+    with u.channel_manager(args.channel):
+        pkgbld.release(repo_name, pkg_name, version,
+                       local=args.local, dryrun=args.dryrun)
     return 0
