@@ -6,7 +6,7 @@ Tests of Package-Builder utility functions.
 # pylint --disable=locally-disabled test_utils.py
 
 import pytest
-from pkgbld.utils import os_call, channel_manager
+from pkgbld.utils import os_call
 
 
 def test_os_call():
