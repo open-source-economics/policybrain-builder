@@ -158,6 +158,12 @@ package at any time using this command:
 $ conda uninstall taxcalc --yes
 ```
 
+If your package has dependencies that are not on the "PSLmodels" or "defaults" conda channels, then you should specify which channel(s) they are on with the "channel" argument:
+
+```
+pbrelease Your-Package yourpackage 1.0.0 --channel conda-forge
+```
+
 What are the package-building criteria?
 ---------------------------------------
 
